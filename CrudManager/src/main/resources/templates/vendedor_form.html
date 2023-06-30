@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Crud Manager - Vendedor</title>
+    <div th:replace="cabecalho :: head"></div>
+</head>
+<body>
+    <div class="container my-2">
+        <h2>Vendedor</h2>
+        <form action="#" th:action="@{/vendedores/salvar}" th:object="${vendedor}" method="POST">
+            <input type="hidden" th:field="*{id}" id="id">
+             <span th:if="${#fields.hasErrors('nome')}"
+                  th:errors="*{nome}"></span>
+            <input type="text" th:field="*{nome}" placeholder="Nome" class="form-control mb-4 col-4">
+             <span th:if="${#fields.hasErrors('email')}"
+                  th:errors="*{email}"></span>
+            <input type="text" th:field="*{email}" placeholder="Email" class="form-control mb-4 col-4">
+             <span th:if="${#fields.hasErrors('telefone')}"
+                  th:errors="*{telefone}"></span>
+            <input type="text" th:field="*{telefone}" placeholder="Telefone" class="form-control mb-4 col-4">
+             <span th:if="${#fields.hasErrors('meta')}"
+                  th:errors="*{meta}"></span>
+            <input type="number" th:field="*{meta}" placeholder="Meta" class="form-control mb-4 col-4"> <!-- Novo campo "meta" -->
+            <button type="submit" class="btn btn-info col-2">Salvar</button>
+        </form>
+        <hr>
+        <a th:href="@{/vendedores}">Vendedores</a>
+    </div>
+</body>
+</html>

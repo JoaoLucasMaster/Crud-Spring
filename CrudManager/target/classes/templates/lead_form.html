@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Crud Manager - Lead</title>
+    <div th:replace="cabecalho :: head"></div>
+</head>
+<body>
+    <div class="container my-2">
+        <h2>Lead</h2>
+        <form action="#" th:action="@{/leads/new}" th:object="${lead}" method="POST">
+            <input type="hidden" th:field="*{id}" id="id">
+            
+            <span th:if="${#fields.hasErrors('nome')}"
+                  th:errors="*{nome}"></span>
+            <input type="text" th:field="*{nome}" placeholder="Nome" class="form-control mb-4 col-4">
+            <span th:if="${#fields.hasErrors('email')}"
+                  th:errors="*{email}"></span>
+            <input type="text" th:field="*{email}" placeholder="Email" class="form-control mb-4 col-4">
+            <span th:if="${#fields.hasErrors('telefone')}"
+                  th:errors="*{telefone}"></span>
+            <input type="text" th:field="*{telefone}" placeholder="Telefone" class="form-control mb-4 col-4">
+            <select th:field="*{vendedor.id}" class="form-control mb-4 col-4">
+                <option th:each="v : ${vendedores}" th:value="${v.id}" th:text="${v.nome}"></option>
+            </select>
+            <label for="ativo">Ativo:</label>
+            <input type="checkbox" th:field="*{ativo}" id="ativo" class="form-check-input mb-4 col-1">
+            <br>
+            <button type="submit" class="btn btn-info col-2">Salvar</button>
+        </form>
+        <hr>
+        <a th:href="@{/leads}">Leads</a>
+    </div>
+</body>
+</html>
